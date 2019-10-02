@@ -1,0 +1,62 @@
+type Query {
+    hello: String!
+    user(id: Int): User
+    users: [User!]!
+    paginatedUsers(page: Int, size: Int): PaginatedUsers!
+}
+
+type Mutation {
+    createUser(user: UserInput): User!
+}
+
+type User {
+    id: Int!
+    name: String!
+    email: String!
+    birthday: String!
+    address: Address
+    created_at: String!
+    posts: [Post!]!
+    followers: [User!]!
+    follows: [User!]!
+}
+
+type PaginatedUsers{
+    total: Int!
+    last_page: Int!
+    current_page: Int!
+    data: [User!]!
+}
+
+input UserInput {
+    name: String!
+    email: String!
+    birthday: String!
+    address: AddressInput
+}
+
+type Post {
+    id: Int!
+    title: String!
+    content: String!
+    comments: [Comment!]!
+}
+
+type Comment {
+    content: String!
+    name: String!
+}
+
+type Address {
+    street: String
+    postalcode: String
+    city: String
+    state: String
+}
+
+input AddressInput {
+    street: String
+    postalcode: String
+    city: String
+    state: String
+}
